@@ -1,8 +1,15 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
+import CountryDetail from "./pages/CountryDetail"
+
 function App() {
   return (
-    <div className="bg-green-600 text-white p-10 text-3xl">
-      Tailwind v4 Working
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/country/:code" element={<CountryDetail />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
