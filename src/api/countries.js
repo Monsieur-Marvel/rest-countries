@@ -4,7 +4,7 @@ const BASE_URL = "https://restcountries.com/v3.1"
 
 export const fetchAllCountries = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/all?fields=name,cca3,population,region,capital`)
+    const response = await fetch(`${BASE_URL}/all?fields=name,cca3,population,region,capital,flags`)
 
     if (!response.ok) {
       throw new Error("API failed")
