@@ -51,7 +51,7 @@ function Home() {
 
   return (
     <div className="p-10 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl mb-8 font-bold">Countries</h1>
+      <h1 className="text-2xl mb-8 font-bold">Where in the world?</h1>
 
     <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
