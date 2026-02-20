@@ -4,7 +4,7 @@ function CountryCard({ country }) {
   return (
     <Link
       to={`/country/${country.cca3}`}
-      className="bg-white shadow-md rounded-lg overflow-hidden hover:scale-105 transition-transform"
+      className="bg-white dark:bg-gray-800 dark:text-white shadow-md shadow-md rounded-lg overflow-hidden hover:scale-105 transition-transform"
     >
       <img
         src={country.flags?.png}
