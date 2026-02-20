@@ -3,6 +3,7 @@ import { fetchAllCountries } from "../api/countries"
 import CountryCard from "../components/CountryCard"
 import { useState } from "react"
 import SkeletonCard from "../components/SkeletonCards"
+import { useFilterStore } from "../store/useFilterStore"
 
 function Home() {
   const { data = [], isLoading, error } = useQuery({
@@ -10,32 +11,32 @@ function Home() {
     queryFn: fetchAllCountries,
   })
 
-  const [search, setSearch] = useState("")
+  const { search, region, setSearch, setRegion } = useFilterStore()
+
   const [showSuggestions, setShowSuggestions] = useState(false)
-  const [region, setRegion] = useState("")
 
-  const filteredCountries = data.filter((country) => {
-    const matchesSearch = country.name.common
-      .toLowerCase()
-      .includes(search.toLowerCase())
+  // First filter by region
+const regionFiltered = region
+  ? data.filter((country) => country.region === region)
+  : data
 
-    const matchesRegion = region
-      ? country.region === region
-      : true
-
-    return matchesSearch && matchesRegion
-  })
+// Search on the region-filtered data
+const filteredCountries = regionFiltered.filter((country) =>
+  country.name.common
+    .toLowerCase()
+    .includes(search.toLowerCase())
+)
 
   const suggestions =
-    search.length > 0
-      ? data
-          .filter((country) =>
-            country.name.common
-              .toLowerCase()
-              .includes(search.toLowerCase())
-          )
-          .slice(0, 10)
-      : []
+  search.length > 0
+    ? regionFiltered
+        .filter((country) =>
+          country.name.common
+            .toLowerCase()
+            .includes(search.toLowerCase())
+        )
+        .slice(0, 10)
+    : []
 
   if (isLoading) {
     return (
@@ -60,7 +61,6 @@ function Home() {
   return (
     <div className="p-10">
       
-      {/* Search + Filter Section */}
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
         {/* Search */}
