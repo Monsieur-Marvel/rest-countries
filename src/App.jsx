@@ -22,7 +22,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/rest-countries/" element={<Home />} />
           <Route path="/country/:code" element={<CountryDetail />} />
         </Routes>
       </BrowserRouter>
