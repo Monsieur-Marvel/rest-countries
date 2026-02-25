@@ -4,6 +4,7 @@ import CountryDetail from "./pages/CountryDetail"
 import { useEffect } from "react"
 import { useThemeStore } from "./store/useThemeStore"
 import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 function App() {
   const darkMode = useThemeStore((state) => state.darkMode)
@@ -26,6 +27,8 @@ function App() {
           <Route path="/country/:code" element={<CountryDetail />} />
         </Routes>
       </BrowserRouter>
+
+      <Footer />
     </div>
   )
 }

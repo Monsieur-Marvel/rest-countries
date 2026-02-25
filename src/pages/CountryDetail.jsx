@@ -56,7 +56,7 @@ function CountryDetail() {
     ).filter(Boolean) || []
 
   return (
-    <div className="p-10 min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <div className="p-10 pb-20 min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
       {/* Back Button */}
       <button

@@ -59,7 +59,7 @@ const filteredCountries = regionFiltered.filter((country) =>
   }
 
   return (
-    <div className="p-10">
+    <div className="p-10 pb-20">
       
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
