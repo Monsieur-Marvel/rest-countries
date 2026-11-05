@@ -21,23 +21,16 @@ const regionFiltered = region
   : data
 
 // Search on the region-filtered data
-const filteredCountries = regionFiltered.filter((country) =>
-  country.name?.common
-    ?.toLowerCase()
+const matchesSearch = (country) =>
+  (country.name?.common || "")
+    .toLowerCase()
     .includes(search.toLowerCase())
-)
 
-  const suggestions =
+const filteredCountries = regionFiltered.filter(matchesSearch)
+const suggestions =
   search.length > 0
-    ? regionFiltered
-        .filter((country) =>
-          country.name?.common
-            ?.toLowerCase()
-            .includes(search.toLowerCase())
-        )
-        .slice(0, 10)
+    ? regionFiltered.filter(matchesSearch).slice(0, 10)
     : []
-
   if (isLoading) {
     return (
       <div className="p-10">

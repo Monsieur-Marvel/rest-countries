@@ -3,36 +3,44 @@ import localData from "../../data.json"
 const BASE_URL = "https://restcountries.com/v3.1"
 
 // Convert old REST Countries data into the current API format.
-const normalizeCountry = (country) => ({
-  ...country,
-
-  name:
+const normalizeCountry = (country) => {
+  const commonName =
     typeof country.name === "string"
-      ? {
-          common: country.name,
-          official: country.name,
-        }
-      : country.name,
+      ? country.name
+      : country.name?.common ||
+        country.name?.official ||
+        country.alpha3Code ||
+        country.cca3 ||
+        "Unknown"
 
-  cca3: country.cca3 || country.alpha3Code,
+  return {
+    ...country,
 
-  capital: Array.isArray(country.capital)
-    ? country.capital
-    : country.capital
-      ? [country.capital]
-      : [],
+    name: {
+      ...(typeof country.name === "object" ? country.name : {}),
+      common: commonName,
+      official:
+        country.name?.official || commonName,
+    },
 
-  flags: {
-    png: country.flags?.png || country.flag || "",
-    svg: country.flags?.svg || country.flag || "",
-    alt: country.flags?.alt || "",
-  },
+    cca3: country.cca3 || country.alpha3Code,
 
-  subregion: country.subregion || "",
+    capital: Array.isArray(country.capital)
+      ? country.capital
+      : country.capital
+        ? [country.capital]
+        : [],
 
-  borders: country.borders || [],
-})
+    flags: {
+      png: country.flags?.png || country.flag || "",
+      svg: country.flags?.svg || country.flag || "",
+      alt: country.flags?.alt || "",
+    },
 
+    subregion: country.subregion || "",
+    borders: country.borders || [],
+  }
+}
 // Normalize both API and fallback responses.
 export const fetchAllCountries = async () => {
   try {
