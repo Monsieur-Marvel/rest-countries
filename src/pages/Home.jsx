@@ -22,8 +22,8 @@ const regionFiltered = region
 
 // Search on the region-filtered data
 const filteredCountries = regionFiltered.filter((country) =>
-  country.name.common
-    .toLowerCase()
+  country.name?.common
+    ?.toLowerCase()
     .includes(search.toLowerCase())
 )
 
@@ -31,8 +31,8 @@ const filteredCountries = regionFiltered.filter((country) =>
   search.length > 0
     ? regionFiltered
         .filter((country) =>
-          country.name.common
-            .toLowerCase()
+          country.name?.common
+            ?.toLowerCase()
             .includes(search.toLowerCase())
         )
         .slice(0, 10)
