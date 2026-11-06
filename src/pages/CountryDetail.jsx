@@ -16,7 +16,7 @@ function CountryDetail() {
     queryFn: () => fetchCountryByCode(code),
   })
 
-  // Get all countries (for borders lookup — will use cache if already fetched)
+  // Get all countries
   const { data: allCountries = [] } = useQuery({
     queryKey: ["countries"],
     queryFn: fetchAllCountries,
@@ -58,7 +58,7 @@ function CountryDetail() {
   return (
     <div className="p-10 pb-20 min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
-      {/* Back Button */}
+    
       <button
         onClick={() => navigate(-1)}
         className="mb-10 px-6 py-2 bg-white dark:bg-gray-700 shadow-md rounded-md hover:scale-105 transition"
@@ -68,14 +68,14 @@ function CountryDetail() {
 
       <div className="grid md:grid-cols-2 gap-12 items-center">
 
-        {/* Flag */}
+      
         <img
           src={flags.svg}
           alt={name.common}
           className="w-full rounded-md shadow-md"
         />
 
-        {/* Country Info */}
+        
         <div>
           <h1 className="text-3xl font-bold mb-6">
             {name.common}
@@ -89,7 +89,6 @@ function CountryDetail() {
             <p><strong>Capital:</strong> {capital?.[0] || "N/A"}</p>
           </div>
 
-          {/* Border Countries */}
           <div className="mt-8">
             <h3 className="font-semibold mb-3">Border Countries:</h3>
 
