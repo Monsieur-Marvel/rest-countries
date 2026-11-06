@@ -2,7 +2,6 @@ import localData from "../../data.json"
 
 const BASE_URL = "https://restcountries.com/v3.1"
 
-// Convert old REST Countries data into the current API format.
 const normalizeCountry = (country) => {
   const commonName =
     typeof country.name === "string"
@@ -41,7 +40,6 @@ const normalizeCountry = (country) => {
     borders: country.borders || [],
   }
 }
-// Normalize both API and fallback responses.
 export const fetchAllCountries = async () => {
   try {
     const response = await fetch(
